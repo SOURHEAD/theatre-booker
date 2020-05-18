@@ -11,16 +11,28 @@ mydb = mysql.connector.connect(
 
 
 mycursor = mydb.cursor()
-print("databases=")
-mycursor.execute("SHOW DATABASES")
-for x in mycursor:
-  print(x)
-  
-mycursor.execute("create table profile (username varchar(255) PRIMARY KEY, password varchar(255) NOT NULL)")
+
+l=[]
 mycursor.execute("SHOW TABLES")
-print("\nnowtables-")
 for x in mycursor:
   print(x)
+  l.append(x)
+
+he=[]
+for i in l:
+    he.append(list(i))
+ 
+me=False
+for i in he:
+    if "profile" in i:
+        me=True
+        break
+    
+if me:
+  pass
+else:
+  mycursor.execute("create table profile (username varchar(255) PRIMARY KEY, password varchar(255) NOT NULL)")
+
 
 tentry=tentre=0
 
@@ -42,7 +54,7 @@ x.configure(bg="lightyellow")
 x.title("account")
 
 def gamer():
-    sql = "INSERT INTO profile (username,password) VALUES (%s, %s)"
+    sql = "INSERT INTO pofile (username,password) VALUES (%s, %s)"
     val = (kkk,ull )
     mycursor.execute(sql, val)
 
