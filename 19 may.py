@@ -41,7 +41,7 @@ def intr():
     x=Tk()
     photo = PhotoImage(file = "cs.png")
     x.title("Welcome to Grande Cinema!")
-    x.geometry('522x214')
+    x.geometry('1280x720')
     a=Label(x, image = photo)
     a.grid(row=0)
     a.after(3000 , a.master.destroy)
