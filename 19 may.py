@@ -68,10 +68,6 @@ def enter_into_table():
     
     
 
-def clear():
-    list = x.pack_slaves()
-    for l in list:
-        l.destroy()
 def clear2():
     list = x.grid_slaves()
     for l in list:
