@@ -88,13 +88,6 @@ def seatpicked(seatno):
     else:
         print("user already registered")
 
-    print("username ",kkk)
-    print("movie ",moviename)
-    print("seatnumber ",seatnumber)
-    sql = "INSERT INTO "+moviename+" (username, seat) VALUES (%s, %s)"
-    val = (kkk, seatnumber)
-    mycursor.execute(sql, val)
-    mydb.commit()
     global seather
     seather+=1
     print(seather,"seatno is",seatnumber)
@@ -106,17 +99,25 @@ def after_seat():
     movii=moviename
     if movii=='Gotg':
         movii='GuardiansOfTheGalaxy'
-    x.geometry('510x420')
+    x.geometry('510x460')
     x.configure(bg='dark slate blue') 
-    pop=PhotoImage(file='pop.png')
     frr='Seat: '
+    switcheroo = {
+        "Antman":Antman,
+        "IronMan":IronMan,
+        "DoctorStrange":DoctorStrange,
+        "AvengersEndgame":AvengersEndgame,
+        "BlackPanther":BlackPanther,
+        "Gotg":Gotg,
+    }
+
     for j in range(len(totalseats)):
         frr+=totalseats[j]+" , "
     t1=Label(x,text=frr,bg='dark slate blue',font=('Arial',10,'bold'),fg='gold')
     t2=Label(x,text="Movie: "+movii,bg='dark slate blue',font=('Arial',20,'bold'),fg='gold')
-    b1=Button(x,text="Khaana?",command=food,image=pop,compound='top',bg='plum1',font=('Arial',15),relief='raised')
-    b1.image=pop
-    b2=Button(x,text='No,proceed to confirmation',command=confirm,font=('Arial',15),bg='plum1',relief='raised')
+    poop=switcheroo.get(moviename)
+    b1=Label(x,image=poop,compound='top',bg='plum1')
+    b2=Button(x,text='Proceed to confirmation',command=confirm,font=('Arial',15),bg='plum1',relief='raised')
     b3=Button(x,text='Back',font=('Arial',15),command=lambda: after_login('f'),bg='plum1',relief='raised')
     t2.pack(pady=20,fill='x')
     t1.pack(padx=80,pady=10)
@@ -128,11 +129,16 @@ def food():
     print('food')
 
 def confirm():
-    print('confirm')
+  print('confirm')
+  for i in totalseats:
+    print("username ",kkk)
+    print("movie ",moviename)
+    print("seatnumber ",i)
+    sql = "INSERT INTO "+moviename+" (username, seat) VALUES (%s, %s)"
+    val = (kkk, i)
+    mycursor.execute(sql, val)
+    mydb.commit()
     
-def seatchecking():
-    print("fd")
-
 def gg(la):
             switcher={
                     'blackpanther':blackpanther,
@@ -367,7 +373,12 @@ def after_login(a=''):
     
     header=Label(x,text='Select a movie',font=('Calibri',40,'bold'),bg='gray10',fg='SlateGray3')
     header.grid(row=0,column=0,columnspan=3,padx='300',pady='20',sticky='N')
-    
+    global Antman
+    global IronMan
+    global DoctorStrange
+    global AvengersEndgame
+    global BlackPanther
+    global Gotg
     Antman=PhotoImage(file='Antman.png')
     IronMan=PhotoImage(file='IronMan.png')
     DoctorStrange=PhotoImage(file='DoctorStrange.png')
