@@ -112,7 +112,7 @@ def after_seat():
     frr='Seat: '
     for j in range(len(totalseats)):
         frr+=totalseats[j]+" , "
-    t1=Label(x,text=frr,bg='dark slate blue',font=('Arial',20,'bold'),fg='gold')
+    t1=Label(x,text=frr,bg='dark slate blue',font=('Arial',10,'bold'),fg='gold')
     t2=Label(x,text="Movie: "+movii,bg='dark slate blue',font=('Arial',20,'bold'),fg='gold')
     b1=Button(x,text="Khaana?",command=food,image=pop,compound='top',bg='plum1',font=('Arial',15),relief='raised')
     b1.image=pop
