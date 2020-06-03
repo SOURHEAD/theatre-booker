@@ -62,22 +62,27 @@ createtables()
 
 
 def  終わり():
-    clear2()
-    h=""
-    for i in totalseats:
-        h+=i
-        if i!=totalseats[-1]:
-            h+=" , "
-        else:
-            pass
-    
+    clear2()    
     accessfood()
+    
+    
     yyy="price- ₹%s"%batua
     x.geometry('1000x1000')
     x.configure(bg='dark slate blue') 
+    mycursor.execute("use ooer")
+    mycursor.execute("select * from "+moviename+" where username='%s'"%kkk)
+    myresult = mycursor.fetchall()
+    global last
+    last=""
+    for i in myresult:
+      if i!=myresult[-1]:
+        last+=i[1]+" , "
+      else:
+          last+=i[1]
+    
     Label(text=("username- "+kkk)).pack()
     Label(text="movie- "+moviename).pack()
-    Label(text="seats- "+h).pack()
+    Label(text="seats- "+last).pack()
     Label(text="food- "+foodstring).pack()
     Label(text=yyy).pack()
     Label(text="payment method- "+payment).pack()
